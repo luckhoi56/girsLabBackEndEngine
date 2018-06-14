@@ -1,4 +1,4 @@
-#include "stdafx.h"
+
 #include "fiat_rdatsrv_distribution_NativeDistribution.h"
 #include "rdatsrv_Distribution.h"
 

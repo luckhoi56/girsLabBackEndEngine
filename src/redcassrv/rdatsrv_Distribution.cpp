@@ -3,7 +3,7 @@
  * in RDAT service.
  */
 
-#include "stdafx.h"
+
 #include "rdatsrv_Distribution.h"
 #include "DistributionManager.h"
 #include "GenericDistribution.h"

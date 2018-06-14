@@ -1,4 +1,4 @@
-#include "stdafx.h"
+
 #include "fiat_rdatsrv_ccf_NativeCCF.h"
 #include "rdatsrv_CCF.h"
 

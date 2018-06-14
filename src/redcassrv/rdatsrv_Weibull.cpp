@@ -3,7 +3,7 @@
  * service.
  */
 
-#include "stdafx.h"
+
 #include "rdatsrv_Weibull.h"
 #include "WeibullSessionManager.h"
 #include "BRASSEngine.h"

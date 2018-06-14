@@ -3,7 +3,7 @@
  * RDAT service.
  */
 
-#include "stdafx.h"
+
 #include "rdatsrv_NonHomogeneous.h"
 #include "rdatsrv_Distribution.h"
 #include "rdatdefs.h"

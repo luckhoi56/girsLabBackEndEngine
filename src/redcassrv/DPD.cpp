@@ -1,4 +1,4 @@
-#include "stdafx.h"
+
 #include "DPD.h"
 #include "Math.h"
 

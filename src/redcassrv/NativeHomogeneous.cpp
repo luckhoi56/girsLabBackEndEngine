@@ -1,4 +1,4 @@
-#include "stdafx.h"
+
 #include "fiat_rdatsrv_homogeneous_NativeHomogeneous.h"
 #include "rdatsrv_Homogeneous.h"
 

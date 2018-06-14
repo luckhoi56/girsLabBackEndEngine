@@ -2,7 +2,7 @@
  * This class is used to define the interface for homogeneous analysis within
  * RDAT service.
  */
-#include "stdafx.h"
+
 #include "rdatsrv_Homogeneous.h"
 #include "rdatsrv_Distribution.h"
 #include "DistributionManager.h"

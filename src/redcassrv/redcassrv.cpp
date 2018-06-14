@@ -1,7 +1,7 @@
 // redcassrv.cpp : Defines the entry point for the DLL application.
 //
 
-#include "stdafx.h"
+
 #include "math.h"
 #include "redcassrv.h"
 #include "DistributionManager.h"
