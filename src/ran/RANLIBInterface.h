@@ -11,8 +11,6 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include "SyncMutex.h"
-
 /**
  * Interface to RANLIB library: generation of random deviates.
  * The interface encapsulates the library in the form of a class
@@ -51,7 +49,7 @@ public:
 	static double generateUniformDeviate();
 	virtual ~RANLIBInterface() {};
 private:
-	static SyncMutex mutex;
+	// static SyncMutex mutex;
 };
 
 #endif // !defined(AFX_RANLIBINTERFACE_H__C3951477_644D_4493_B4BB_549045F5EA64__INCLUDED_)
