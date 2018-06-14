@@ -1,5 +1,6 @@
 #pragma once
-#include "parametricdistribution.h"
+
+#include "ParametricDistribution.h"
 
 class UniformDistribution :
 	public ParametricDistribution

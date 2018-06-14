@@ -7,7 +7,7 @@
 #include "TrLogNormalDistribution.h"
 #include "LogNormalDistribution.h"
 #include "NormalDistribution.h"
-#include "error.h"
+#include "../global/Error.h"
 #include <stdlib.h>
 #include <math.h>
 

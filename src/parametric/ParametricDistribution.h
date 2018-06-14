@@ -19,13 +19,13 @@ public:
 	virtual void fillSampleArray(double * values, int size) const;
 	virtual double getSample() const;
 	virtual double getMedian() const;
-	virtual double getMean() const = 0L;
-	virtual double getQuantile(double x) const = 0L;
-	virtual double getCDF(double x) const = 0L;
+	virtual double getMean() const = 0;
+	virtual double getQuantile(double x) const = 0;
+	virtual double getCDF(double x) const = 0;
 	virtual double getPDF(double x) const;
-	virtual double getLogPDF(double x) const = 0L;
+	virtual double getLogPDF(double x) const = 0;
 	virtual double getX(double x) { return x; };
-	virtual double getVariance() const = 0L;
+	virtual double getVariance() const = 0;
 	virtual ~ParametricDistribution() {};
 };
 

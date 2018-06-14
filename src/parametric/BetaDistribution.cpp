@@ -5,9 +5,10 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "BetaDistribution.h"
-#include "Error.h"
-#include "DCDFLIBInterface.h"
-#include "RANLIBInterface.h"
+#include "../core/BRASSError.h"
+#include "../dcdf/DCDFLIBInterface.h"
+#include "../ran/RANLIBInterface.h"
+#include "../global/Error.h"
 #include <math.h>
 
 //////////////////////////////////////////////////////////////////////

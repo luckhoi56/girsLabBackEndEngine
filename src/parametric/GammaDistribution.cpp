@@ -5,13 +5,12 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "GammaDistribution.h"
-#include "error.h"
-#include "RANLIBInterface.h"
-#include "DCDFLIBInterface.h"
+#include "../dcdf/DCDFLIBInterface.h"
+#include "../ran/RANLIBInterface.h"
+#include "../global/Error.h"
+#include "../global/Distribution.h"
 #include <math.h>
-
-#include <iostream>
-#include "Distribution.h"
+#include <iostream> 
 
 using namespace std;
 

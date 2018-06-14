@@ -5,10 +5,10 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "NormalDistribution.h"
-#include "RANLIBInterface.h"
-#include "DCDFLIBInterface.h"
+#include "../dcdf/DCDFLIBInterface.h"
+#include "../ran/RANLIBInterface.h"
+#include "../global/Error.h"
 #include <math.h>
-#include <error.h>
 
 #define PI 3.14159
 

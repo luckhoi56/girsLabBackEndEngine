@@ -4,7 +4,7 @@
 
 #include "Beta0595InputMode.h"
 #include <math.h>
-#include "DCDFLIBInterface.h"
+#include "../dcdf/DCDFLIBInterface.h"
 
 #include <iostream>
 using namespace std;
