@@ -12,8 +12,7 @@
 
 NHLikelihood::NHLikelihood()
 {
-	modeParams = NULL;
-
+	modeParams = nullptr;
 }
 
 NHLikelihood::~NHLikelihood()
