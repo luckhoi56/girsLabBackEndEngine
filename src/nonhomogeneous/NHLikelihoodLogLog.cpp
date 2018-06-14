@@ -8,7 +8,7 @@
 #include "NHLikelihoodLogLog.h"
 #include "../homogeneous/TabularLogNormalBinomialIntegrator.h"
 #include "../homogeneous/LogNormalBinomialDistribution.h"
-#include "../dcdf/DCDFLibInterface.h"
+#include "../dcdf/DCDFLIBInterface.h"
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

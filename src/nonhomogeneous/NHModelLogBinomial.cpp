@@ -9,7 +9,7 @@
 #include "NHModelLogPoisson.h"
 #include "NHPriorLogNormalMedianEF.h"
 #include "NHPriorLogNormalMedianSigma.h"
-#include "../parametric/LognormalDistribution.h"
+#include "../parametric/LogNormalDistribution.h"
 #include "../parametric/TrLogNormalDistribution.h"
 
 #include <iostream>

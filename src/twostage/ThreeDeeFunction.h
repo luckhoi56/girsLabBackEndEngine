@@ -11,7 +11,7 @@
 
 #include "../parametric/GammaDistribution.h"
 #include "../nonhomogeneous/NHInterpretation.h"
-#include "../dcdf/DCDFLibInterface.h"
+#include "../dcdf/DCDFLIBInterface.h"
 #include "../nonhomogeneous/NHObservation.h"
 #include "../global/Function.h"
 
