@@ -2,9 +2,9 @@
 
 #pragma once
 
-#include "../core/weibullsampleset.h"
 #include <math.h>
 
+#include "../core/WeibullSampleSet.h"
 #include "WeibullModelLayout.h"
 
 /**

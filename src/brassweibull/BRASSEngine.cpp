@@ -1,21 +1,22 @@
 // $Id: BRASSEngine.cpp 2240 2014-02-23 02:14:31Z Dongfeng Zhu $
 
-#include "brassengine.h"
-#include "adjustweibulloperator.h"
-#include "../core/normaldensityoperator.h"
-#include "weibulltestdataoperator.h"
-#include "weibullgroupeddataoperator.h"
-#include "../core/weightedlikeoperator.h"
-#include "../core/slicesampler.h"
-#include "weibullmeasurefunction.h"
-#include "linkedadjustmentmodel.h"
-#include "weibullprior.h"
+#include "BRASSEngine.h"
+#include "AdjustAggregateOperator.h"
+#include "AdjustWeibullOperator.h"
+#include "../core/NormalDensityOperator.h"
+#include "WeibullTestDataOperator.h"
+#include "WeibullGroupedDataOperator.h"
+#include "../core/WeightedLikeOperator.h"
+#include "../core/SliceSampler.h"
+#include "WeibullMeasureFunction.h"
+#include "LinkedAdjustmentModel.h"
+#include "WeibullPrior.h"
 #include <math.h>
 #include <fstream>
 #include <cstdlib>
-#include "..\core\slicesampleraids.h"
-#include "..\core\convergenceoperator.h"
-#include "..\dcdflib\DCDFLIBInterface.h"
+#include "../core/SliceSamplerAids.h"
+#include "../core/ConvergenceOperator.h"
+#include "../dcdf/DCDFLIBInterface.h"
 
 #include "../core/BRASSError.h"
 
@@ -278,9 +279,11 @@ int BRASSEngine::addProportionalRateModel(int node0, int node1, int mode, double
 	int gamma = this->getScaleIndex(node1,mode);
 
 	if (errfac == 1) {
-		model->addModel(ProportionalRateOperator(alpha,gamma,beta,median));
+		ProportionalRateOperator pro = ProportionalRateOperator(alpha,gamma,beta,median);
+		model->addModel(pro);
 	} else {
-		model->addOperator(AdjustWeibullRateOperator(alpha,gamma,beta,median,errfac));
+		AdjustWeibullRateOperator awro = AdjustWeibullRateOperator(alpha,gamma,beta,median,errfac);
+		model->addOperator(awro);
 	}
 	clear();
 	return 0;
@@ -315,9 +318,11 @@ int BRASSEngine::addProportionalTimeModel(int node0, int node1, int mode, double
 	int gamma = this->getScaleIndex(node1,mode);
 
 	if (errfac == 1) {
-		model->addModel(ProportionalTimeOperator(alpha,gamma,beta,median));
+		ProportionalTimeOperator pto = ProportionalTimeOperator(alpha,gamma,beta,median);
+		model->addModel(pto);
 	} else {
-		model->addOperator(AdjustWeibullTimeOperator(alpha,gamma,beta,median,errfac));
+		AdjustWeibullTimeOperator awto = AdjustWeibullTimeOperator(alpha,gamma,beta,median,errfac);
+		model->addOperator(awto);
 	}
 	clear();
 	return 0;
@@ -366,8 +371,10 @@ int BRASSEngine::addProportionalRateModel(int node0, int node1, double median, d
 	} else {
 		//model->addOperator(AggregateRateOperator(node0,node1,median,errfac,mode_cnt,node_cnt));
 		addProportionalRateModel(node0,node1,1,median,errfac);
-		for (int i = 2 ; i <= mode_cnt ; i++)
-			model->addModel(LinkedRateAdjustmentModel(node0,node1,node_cnt,i,1));
+		for (int i = 2 ; i <= mode_cnt ; i++) {
+			LinkedRateAdjustmentModel lram = LinkedRateAdjustmentModel(node0,node1,node_cnt,i,1);
+			model->addModel(lram);
+		}
 	}
 	clear();
 	return 0;
@@ -401,8 +408,10 @@ int BRASSEngine::addProportionalTimeModel(int node0, int node1, double median, d
 	} else {
 		// model->addOperator(AggregateTimeOperator(node0,node1,median,errfac,mode_cnt,node_cnt));
 		addProportionalTimeModel(node0,node1,1,median,errfac);
-		for (int i = 2 ; i <= mode_cnt ; i++)
-			model->addModel(LinkedTimeAdjustmentModel(node0,node1,node_cnt,i,1));
+		for (int i = 2 ; i <= mode_cnt ; i++) {
+			LinkedTimeAdjustmentModel ltam = LinkedTimeAdjustmentModel(node0,node1,node_cnt,i,1);
+			model->addModel(ltam);
+		}
 	}
 	clear();
 	return 0;
@@ -1566,7 +1575,8 @@ OperatorFunction * BRASSEngine::createAdjustmentFunction(int adjustment, int nod
 int BRASSEngine::getChain(OperatorFunction * func, int start, int length, double * arr)
 {
 	if (func == 0) return BRASSError::ERR_GENERAL;
-	samples->execute(ChainOperator(func,start,length,arr));
+	ChainOperator co = ChainOperator(func,start,length,arr);
+	samples->execute(co);
 	return 0;
 }
 
@@ -1589,9 +1599,7 @@ const string BRASSEngine::getModeName(int mode)
 	} 
 	else 
 	{
-		char buffer[32];
-		itoa(mode,buffer,31);
-		return string("") + "mode " + buffer;
+		return string("") + "mode " + std::to_string(mode);
 	}
 }
 
@@ -1624,9 +1632,7 @@ const string BRASSEngine::getNodeName(int node)
 	} 
 	else 
 	{
-		char buffer[32];
-		itoa(node,buffer,31);
-		return string("") + "node " + buffer;
+		return string("") + "node " + std::to_string(node);
 	}
 }
 

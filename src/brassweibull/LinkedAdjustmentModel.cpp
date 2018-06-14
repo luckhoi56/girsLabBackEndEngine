@@ -1,6 +1,6 @@
 // $Id: LinkedAdjustmentModel.cpp 169 2005-01-28 14:17:28Z saulo $
 
-#include "linkedadjustmentmodel.h"
+#include "LinkedAdjustmentModel.h"
 #include "WeibullModelLayout.h"
 
 /**
@@ -79,7 +79,7 @@ void LinkedAdjustmentModel::print(ostream & os) const
 	} else if (direction == DIR_E_TO_A) {
 		os << "(" << dst_gamma << " -> " << dst_alpha << ")";
 	} else {
-		os << "(?? -> ??)";
+		os << "(? -> ?)";
 	}
 }
 

@@ -3,7 +3,7 @@
 #pragma once
 
 #include "../core/GroupedData.h"
-#include "../core/netoperator.h"
+#include "../core/NetOperator.h"
 
 /**
  * Likelihood operator for Weibull grouped data.

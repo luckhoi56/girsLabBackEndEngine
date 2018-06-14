@@ -1,6 +1,6 @@
 // $Id: AdjustAggregateOperator.cpp 352 2005-03-11 17:08:23Z saulo $
 
-#include "adjustaggregateoperator.h"
+#include "AdjustAggregateOperator.h"
 
 #include <math.h>
 

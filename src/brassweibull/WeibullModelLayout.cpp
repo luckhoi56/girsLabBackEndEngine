@@ -1,7 +1,7 @@
 // $Id: WeibullModelLayout.cpp 275 2005-03-01 03:53:40Z fgroen $
 
-#include "weibullmodellayout.h"
-#include "..\core\slicesampleraids.h"
+#include "WeibullModelLayout.h"
+#include "../core/SliceSamplerAids.h"
 
 WeibullModelLayout::WeibullModelLayout(void)
 {

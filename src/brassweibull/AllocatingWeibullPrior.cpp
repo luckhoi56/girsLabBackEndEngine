@@ -1,11 +1,10 @@
 // $Id: AllocatingWeibullPrior.cpp 169 2005-01-28 14:17:28Z saulo $
 
-#include "allocatingweibullprior.h"
-
+#include "AllocatingWeibullPrior.h"
 #include <math.h>
-#include "../core/netoperator.h"
-#include "../core/timedmeasure.h"
-#include "weibullmeasurefunction.h"
+#include "../core/NetOperator.h"
+#include "../core/TimedMeasure.h"
+#include "WeibullMeasureFunction.h"
 #include "WeibullModelLayout.h"
 
 AllocatingWeibullPrior::AllocatingWeibullPrior(void)

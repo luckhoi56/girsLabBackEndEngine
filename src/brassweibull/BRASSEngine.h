@@ -11,9 +11,8 @@
 #include "WeibullModelLayout.h"
 #include "../core/JointDensityEstimate.h"
 #include "../core/WeibullStatus.h"
-#include "../core/brassstreams.h"
-
-#include "../core/brasserror.h"
+#include "../core/BRASSStreams.h"
+#include "../core/BRASSError.h"
 
 #include <string>
 #include <vector>

@@ -2,8 +2,8 @@
 
 #pragma once
 
-#include "../core/netoperator.h"
-#include "../core/netmodel.h"
+#include "../core/NetOperator.h"
+#include "../core/NetModel.h"
 #include <iostream>
 
 /**

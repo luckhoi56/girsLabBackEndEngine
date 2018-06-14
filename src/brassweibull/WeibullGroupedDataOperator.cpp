@@ -1,7 +1,7 @@
 // $Id: WeibullGroupedDataOperator.cpp 169 2005-01-28 14:17:28Z saulo $
 
-#include "weibullgroupeddataoperator.h"
-#include "weibullmodellayout.h"
+#include "WeibullGroupedDataOperator.h"
+#include "WeibullModelLayout.h"
 
 #include <math.h>
 #include <stdlib.h>

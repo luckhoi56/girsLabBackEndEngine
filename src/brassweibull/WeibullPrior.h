@@ -1,9 +1,9 @@
 // $Id: WeibullPrior.h 1089 2005-08-08 16:31:42Z fgroen $
 
 #pragma once
-#include "../core/netoperator.h"
-#include "../core/timedmeasure.h"
-#include "weibullmeasurefunction.h"
+#include "../core/NetOperator.h"
+#include "../core/TimedMeasure.h"
+#include "WeibullMeasureFunction.h"
 #include "WeibullModelLayout.h"
 
 /**

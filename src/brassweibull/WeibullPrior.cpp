@@ -1,6 +1,6 @@
 // $Id: WeibullPrior.cpp 1089 2005-08-08 16:31:42Z fgroen $
 
-#include "weibullprior.h"
+#include "WeibullPrior.h"
 #include <math.h>
 
 /**
