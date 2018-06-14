@@ -12,7 +12,7 @@
  *
  ****************************************************/
 
-#include "stdafx.h"
+
 #include "JavaSession.h"
 
 #include "WeibullFunction.h"

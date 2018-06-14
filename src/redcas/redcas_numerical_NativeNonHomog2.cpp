@@ -1,4 +1,4 @@
-#include "stdafx.h"
+
 #include <stdlib.h>
 #include "redcas_numerical_NativeNonHomog2.h"
 #include "SessionManager.h"

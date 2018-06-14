@@ -1,4 +1,4 @@
-#include "stdafx.h"
+
 #include "redcas_numerical_NativeWeibull2.h"
 #include "WeibullSessionManager.h"
 #include "BRASSEngine.h"

@@ -2,7 +2,7 @@
 // $Header
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+
 #include "SessionManager.h"
 #include "NHSession.h"
 
