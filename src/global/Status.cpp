@@ -68,7 +68,7 @@ void Status::setProgress(int progress)
 void Status::getStatus(char *buffer, int maxChars)
 {
 	// if (_mutex.obtain()) {
-		if (_text != 0L) {
+		if (_text != 0) {
 			strncpy(buffer,_text,maxChars);
 		} else {
 			strncpy(buffer,"IDLE",maxChars);

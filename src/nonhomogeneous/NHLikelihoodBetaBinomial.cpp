@@ -7,7 +7,7 @@
 
 #include "NHLogBinomialSupport.h"
 #include "NHLikelihoodBetaBinomial.h"
-#include "../dcdf/DCDFLibInterface.h"
+#include "../dcdf/DCDFLIBInterface.h"
 
 #include <math.h>
 #include <iostream>

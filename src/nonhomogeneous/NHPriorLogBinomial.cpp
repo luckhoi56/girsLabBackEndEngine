@@ -4,7 +4,7 @@
 // Copyright: (c) 2002, Enrique Lopez Droguett and Frank Groen. All rights reserved.
 //
 
-#include "nhpriorlogbinomial.h"
+#include "NHPriorLogBinomial.h"
 #include <math.h>
 
 NHPriorLogBinomial::~NHPriorLogBinomial(void)

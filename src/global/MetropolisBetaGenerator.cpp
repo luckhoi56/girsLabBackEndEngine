@@ -7,7 +7,7 @@
 #include "../ran/RANLIBInterface.h"
 #include "../dcdf/DCDFLIBInterface.h"
 #include <math.h>
-#include "error.h"
+#include "Error.h"
 
 #define SMALL_VALUE 1e-25
 #define ONE 1
