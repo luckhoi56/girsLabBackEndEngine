@@ -1,0 +1,71 @@
+set(NONHOMOGENEOUS_SRC
+        NHBetaSampleGenerator.cpp
+        NHBetaSampleGenerator.h
+        NHFunction.cpp
+        NHFunction.h
+        NHGammaSampleGenerator.cpp
+        NHGammaSampleGenerator.h
+        NHInterpretation.cpp
+        NHInterpretation.h
+        NHLikelihood.cpp
+        NHLikelihood.h
+        NHLikelihoodBetaBinomial.cpp
+        NHLikelihoodBetaBinomial.h
+        NHLikelihoodGammaPoisson.cpp
+        NHLikelihoodGammaPoisson.h
+        NHLikelihoodLogBinomial.cpp
+        NHLikelihoodLogBinomial.h
+        NHLikelihoodLogLog.cpp
+        NHLikelihoodLogLog.h
+        NHLikelihoodLogPoisson.cpp
+        NHLikelihoodLogPoisson.h
+        NHLogBinomialSupport.cpp
+        NHLogBinomialSupport.h
+        NHLogPoissonSupport.cpp
+        NHLogPoissonSupport.h
+        NHModel.cpp
+        NHModel.h
+        NHModelBetaBinomial.cpp
+        NHModelBetaBinomial.h
+        NHModelGammaPoisson.cpp
+        NHModelGammaPoisson.h
+        NHModelLogBinomial.cpp
+        NHModelLogBinomial.h
+        NHModelLogLog.cpp
+        NHModelLogLog.h
+        NHModelLogPoisson.cpp
+        NHModelLogPoisson.h
+        NHObservation.cpp
+        NHObservation.h
+        NHPrior.cpp
+        NHPrior.h
+        NHPriorBetaBinomial.cpp
+        NHPriorBetaBinomial.h
+        NHPriorGammaPoisson.cpp
+        NHPriorGammaPoisson.h
+        NHPriorLogBinomial.cpp
+        NHPriorLogBinomial.h
+        NHPriorLogLog.cpp
+        NHPriorLogLog.h
+        NHPriorLogNormalMedianEF.cpp
+        NHPriorLogNormalMedianEF.h
+        NHPriorLogNormalMedianSigma.cpp
+        NHPriorLogNormalMedianSigma.h
+        NHPriorLogPoisson.cpp
+        NHPriorLogPoisson.h
+        NHSession.cpp
+        NHSession.h
+        )
+
+add_library(nonhomogeneous STATIC ${NONHOMOGENEOUS_SRC})
+
+set_target_properties(nonhomogeneous PROPERTIES LINKER_LANGUAGE CXX)
+
+target_link_libraries(nonhomogeneous
+        core
+        dcdf
+        general
+        homogeneous
+        parametric
+        ran
+        )
