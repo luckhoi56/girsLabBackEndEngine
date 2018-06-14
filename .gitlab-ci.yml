@@ -1,0 +1,66 @@
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+
+image: docker:latest
+
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+  CONTAINER_IMAGE: gitlab.girs-spc.seas.ucla.edu:4567/jpl/bayesian-estimation-engine
+  DOCKER_DRIVER: overlay2
+
+services:
+  - docker:dind
+
+before_script:
+  - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
+
+stages:
+- build
+- test
+- deploy
+
+build:bayesian-estimation-engine:
+  stage: build
+  script:
+    - docker pull $CONTAINER_IMAGE:latest || true
+    - docker build --cache-from $CONTAINER_IMAGE:latest --target builder --tag $CONTAINER_IMAGE:latest .
+    - docker push $CONTAINER_IMAGE:latest
+  only:
+    - master
+    - develop
+
+test:bayesian-estimation-engine:
+  stage: test
+  script:
+    - docker pull $CONTAINER_IMAGE:latest
+    - docker run -i --rm $CONTAINER_IMAGE:latest /bin/sh -c 'cd build; cmake -DBE_BUILD_TEST=ON ../src; make; make CTEST_OUTPUT_ON_FAILURE=1 test'
+  dependencies:
+    - build:bayesian-estimation-engine
+  only:
+    - develop
+
+coverage:bayesian-estimation-engine:
+  stage: test
+  script:
+    - docker pull $CONTAINER_IMAGE:latest
+    - docker run -i --rm $CONTAINER_IMAGE:latest /bin/sh -c 'cd build; cmake -DBE_BUILD_TEST=ON -DBE_BUILD_TEST_COVERAGE=ON ../src; make; make CTEST_OUTPUT_ON_FAILURE=1 test; make coverage'
+  artifacts:
+    expire_in: 1d
+    when: always
+    paths:
+      - coverage/
+  dependencies:
+    - build:bayesian-estimation-engine
+  only:
+    - develop
+
+
+deploy:bayesian-estimation-engine:
+  stage: deploy
+  script:
+    - docker pull $CONTAINER_IMAGE:latest || true
+    - docker build --cache-from $CONTAINER_IMAGE:latest --target deployer --tag $CONTAINER_IMAGE:latest .
+    - docker push $CONTAINER_IMAGE:latest
+  only:
+    - master
+    - develop

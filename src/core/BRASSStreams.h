@@ -1,5 +1,3 @@
-// $Id: brassstreams.h 275 2005-03-01 03:53:40Z fgroen $
-
 #pragma once
 
 #include <iostream>
