@@ -19,32 +19,32 @@ stages:
 - test
 - deploy
 
-build:hcl-engine:
+build:bayesian-estimation-engine:
   stage: build
   script:
     - docker pull $CONTAINER_IMAGE:latest || true
     - docker build --cache-from $CONTAINER_IMAGE:latest --target builder --tag $CONTAINER_IMAGE:latest .
     - docker push $CONTAINER_IMAGE:latest
-  only:
-    - master
-    - develop
+  # only:
+  #   - master
+  #   - develop
 
-test:hcl-engine:
+test:bayesian-estimation-engine:
   stage: test
   script:
     - docker pull $CONTAINER_IMAGE:latest
-    - docker run -i --rm $CONTAINER_IMAGE:latest /bin/sh -c 'cd build; cmake -DHCL_BUILD_TEST=ON ../src; make; make CTEST_OUTPUT_ON_FAILURE=1 test'
+    - docker run -i --rm $CONTAINER_IMAGE:latest /bin/sh -c 'cd build; cmake -DBE_BUILD_TEST=ON ../src; make; make CTEST_OUTPUT_ON_FAILURE=1 test'
   dependencies:
-    - build:hcl-engine
-  only:
-    - develop
+    - build:bayesian-estimation-engine
+  # only:
+  #   - develop
 
-deploy:hcl-engine:
+deploy:bayesian-estimation-engine:
   stage: deploy
   script:
     - docker pull $CONTAINER_IMAGE:latest || true
     - docker build --cache-from $CONTAINER_IMAGE:latest --target deployer --tag $CONTAINER_IMAGE:latest .
     - docker push $CONTAINER_IMAGE:latest
-  only:
-    - master
-    - develop
+  # only:
+  #   - master
+  #   - develop
