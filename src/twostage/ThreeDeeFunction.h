@@ -9,11 +9,11 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include "GammaDistribution.h"
-#include "NHInterpretation.h"
-#include "DCDFLibInterface.h"
-#include "NHObservation.h"
-#include "Function.h"
+#include "../parametric/GammaDistribution.h"
+#include "../nonhomogeneous/NHInterpretation.h"
+#include "../dcdf/DCDFLibInterface.h"
+#include "../nonhomogeneous/NHObservation.h"
+#include "../global/Function.h"
 
 class ThreeDeeFunction : public Function  
 {

@@ -9,9 +9,9 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include "Function.h"
-#include "NHSession.h"
-#include "GammaDistribution.h"
+#include "../global/Function.h"
+#include "../nonhomogeneous/NHSession.h"
+#include "../parametric/GammaDistribution.h"
 
 #include <math.h>
 

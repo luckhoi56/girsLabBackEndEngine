@@ -3,15 +3,16 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "TwoStageGP.h"
-#include "NHSession.h"
 #include "TwoStageFunction.h"
-#include "SampleSet.h"
-#include <iostream>
-#include <MetropolisLNGenerator.h>
-#include "NHObservation.h"
-#include "NHLikelihoodGammaPoisson.h"
-#include "NHModelGammaPoisson.h"
 #include "ThreeDeeFunction.h"
+#include "../global/SampleSet.h"
+#include "../global/MetropolisLNGenerator.h"
+#include "../nonhomogeneous/NHSession.h"
+#include "../nonhomogeneous/NHObservation.h"
+#include "../nonhomogeneous/NHLikelihoodGammaPoisson.h"
+#include "../nonhomogeneous/NHModelGammaPoisson.h"
+
+#include <iostream>
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
@@ -34,82 +35,82 @@ void TwoStageGP::stepByStep(double k, double T)
 	NHSession session;
 	session.setModel(gampois);
 
-			session.addDataPoint( 5,100 );
+			session.addDataPoint(5, 100, 0, 0);
 			//session.addDataPoint( 5,100 );
 			//session.addDataPoint( 5,100 );
-			session.addDataPoint( 15,100 );
+			session.addDataPoint(15, 100, 0, 0);
 			//session.addDataPoint( 15,100 );
 			//session.addDataPoint( 15,100 );
 			//session.addDataPoint( 15,100 );
 			//session.addDataPoint( 15,100 );
 			//session.addDataPoint( 15,100 );
-			session.addDataPoint( 25,100 );
+			session.addDataPoint(25, 100, 0, 0);
 			//session.addDataPoint( 25,100 );
 			//session.addDataPoint( 25,100 );
 			//session.addDataPoint( 25,100 );
 			//session.addDataPoint( 25,100 );
 			//session.addDataPoint( 25,100 );
-			session.addDataPoint( 35,100 );
+			session.addDataPoint(35, 100, 0, 0);
 			//session.addDataPoint( 35,100 );
 			//session.addDataPoint( 35,100 );
 			//session.addDataPoint( 35,100 );
 			//session.addDataPoint( 35,100 );
-			session.addDataPoint( 45,100 );
+			session.addDataPoint(45,100, 0, 0);
 			//session.addDataPoint( 45,100 );
 			//session.addDataPoint( 45,100 );
 			//session.addDataPoint( 45,100 );
-			session.addDataPoint( 55,100 );
+			session.addDataPoint(55, 100, 0, 0);
 			//session.addDataPoint( 55,100 );
 			//session.addDataPoint( 55,100 );
-			session.addDataPoint( 65,100 );
+			session.addDataPoint(65, 100, 0, 0);
 			//session.addDataPoint( 65,100 );
-			session.addDataPoint( 75,100 );
-			session.addDataPoint( 85,100 );
+			session.addDataPoint(75, 100, 0, 0);
+			session.addDataPoint(85, 100, 0, 0);
 
-	session.setSampleCount(1000); // NH sample size
-	// non homogeneous first stage
-	session.runAnalysis();
+			session.setSampleCount(1000); // NH sample size
+			// non homogeneous first stage
+			session.runAnalysis();
 
-	cout << "Constructing pop var curve" << endl;
+			cout << "Constructing pop var curve" << endl;
 
-	TwoStageFunction func1;
-	func1.prior = &session;
-	func1.likelihood = 0;
+			TwoStageFunction func1;
+			func1.prior = &session;
+			func1.likelihood = 0;
 
-	// set up homogenous sampler
-	SampleSet samples1;
-	MetropolisSampler * sampler1 = new MetropolisSampler(samples1);
-	sampler1->setSampleSize(4000); // H sample size
-	sampler1->setGenerator(new MetropolisLNGenerator());
+			// set up homogenous sampler
+			SampleSet samples1;
+			MetropolisSampler *sampler1 = new MetropolisSampler(samples1);
+			sampler1->setSampleSize(4000); // H sample size
+			sampler1->setGenerator(new MetropolisLNGenerator());
 
-	// homogeneous second stage
-	sampler1->sample(func1);
+			// homogeneous second stage
+			sampler1->sample(func1);
 
-	// construct distribution on lambda
-	Distribution lambda1;
-	samples1.getMarginal(0,lambda1);
+			// construct distribution on lambda
+			Distribution lambda1;
+			samples1.getMarginal(0, lambda1);
 
-	cout << "Starting homogeneous update" << endl;
+			cout << "Starting homogeneous update" << endl;
 
-	TwoStageFunction func2;
-	func2.prior = &session;
-	func2.likelihood = new GammaDistribution(1 / T,k + 1); 
+			TwoStageFunction func2;
+			func2.prior = &session;
+			func2.likelihood = new GammaDistribution(1 / T, k + 1);
 
-	// set up homogenous sampler
-	SampleSet samples2;
-	MetropolisSampler * sampler2 = new MetropolisSampler(samples2);
-	sampler2->setSampleSize(1000); // H sample size
-	sampler2->setGenerator(new MetropolisLNGenerator());
+			// set up homogenous sampler
+			SampleSet samples2;
+			MetropolisSampler *sampler2 = new MetropolisSampler(samples2);
+			sampler2->setSampleSize(1000); // H sample size
+			sampler2->setGenerator(new MetropolisLNGenerator());
 
-	// homogeneous second stage
-	sampler2->sample(func2);
+			// homogeneous second stage
+			sampler2->sample(func2);
 
-	// construct distribution on lambda
-	Distribution lambda2;
-	samples2.getMarginal(0,lambda2);
+			// construct distribution on lambda
+			Distribution lambda2;
+			samples2.getMarginal(0, lambda2);
 
-	for (int i = 1 ; i < 100 ; i++)
-		cout << i * 0.01 << " " << lambda1.getPercentile(i * 0.01) << " " << lambda2.getPercentile(i * 0.01) << endl;
+			for (int i = 1; i < 100; i++)
+				cout << i * 0.01 << " " << lambda1.getPercentile(i * 0.01) << " " << lambda2.getPercentile(i * 0.01) << endl;
 
 }
 
