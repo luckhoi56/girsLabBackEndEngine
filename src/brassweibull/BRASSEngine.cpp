@@ -3,22 +3,23 @@
 #include "BRASSEngine.h"
 #include "AdjustAggregateOperator.h"
 #include "AdjustWeibullOperator.h"
-#include "../core/NormalDensityOperator.h"
 #include "WeibullTestDataOperator.h"
 #include "WeibullGroupedDataOperator.h"
-#include "../core/WeightedLikeOperator.h"
-#include "../core/SliceSampler.h"
 #include "WeibullMeasureFunction.h"
 #include "LinkedAdjustmentModel.h"
 #include "WeibullPrior.h"
-#include <math.h>
-#include <fstream>
-#include <cstdlib>
+#include "../core/NormalDensityOperator.h"
+#include "../core/WeightedLikeOperator.h"
+#include "../core/SliceSampler.h"
 #include "../core/SliceSamplerAids.h"
 #include "../core/ConvergenceOperator.h"
 #include "../dcdf/DCDFLIBInterface.h"
-
 #include "../core/BRASSError.h"
+
+#include <math.h>
+#include <fstream>
+#include <cstdlib>
+#include <cstring>
 
 using namespace std;
 

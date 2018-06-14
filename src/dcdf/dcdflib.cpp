@@ -6030,7 +6030,11 @@ static unsigned long qbdd,qcond,qdum1,qdum2,qincr,qlim,qok,qup;
 DINVR:
     if(*status > 0) goto S310;
     qcond = !qxmon(small,*x,big);
-    if(qcond) ftnstop(" SMALL, X, BIG not monotone in INVR");
+    if(qcond)
+    {
+        char *message = (char *)" SMALL, X, BIG not monotone in INVR";
+        ftnstop(message);
+    }
     xsave = *x;
 /*
      See that SMALL and BIG bound the zero and set QINCR
@@ -6406,7 +6410,11 @@ static double dlanor,approx,correc,xx,xx2,T2;
      .. Executable Statements ..
 */
     xx = fabs(*x);
-    if(xx < 5.0e0) ftnstop(" Argument too small in DLANOR");
+    if(xx < 5.0e0)
+    {
+        char *message = (char *)" Argument too small in DLANOR";
+        ftnstop(message);
+    }
     approx = -dlsqpi-0.5e0*xx*xx-log(xx);
     xx2 = xx*xx;
     T2 = 1.0e0/xx2;
@@ -6787,11 +6795,16 @@ static double dstrem,sterl,T2;
             0.347320283765002252252252252252D12
             -0.123696021422692744542517103493D14
 */
-    if(*z <= 0.0e0) ftnstop("Zero or negative argument in DSTREM");
-    if(!(*z > 6.0e0)) goto S10;
-    T2 = 1.0e0/pow(*z,2.0);
-    dstrem = devlpl(coef,&K1,&T2)**z;
-    goto S20;
+if (*z <= 0.0e0)
+{
+    char *message = (char *)"Zero or negative argument in DSTREM";
+    ftnstop(message);
+}
+if (!(*z > 6.0e0))
+    goto S10;
+T2 = 1.0e0 / pow(*z, 2.0);
+dstrem = devlpl(coef, &K1, &T2) * *z;
+goto S20;
 S10:
     sterl = hln2pi+(*z-0.5e0)*log(*z)-*z;
     dstrem = dlngam(z)-sterl;

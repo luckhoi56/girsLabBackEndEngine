@@ -12,7 +12,9 @@
 
 #include "BinnedSampleSpace.h"
 #include "../ran/RANLIBInterface.h"
+
 #include <math.h>
+#include <cstdlib>
 
 #ifdef _DEBUG
 #include <iostream>
