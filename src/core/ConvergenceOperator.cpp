@@ -1,4 +1,4 @@
-#include "convergenceoperator.h"
+#include "ConvergenceOperator.h"
 
 /**
  * Constructor.

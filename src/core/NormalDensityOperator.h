@@ -1,7 +1,7 @@
 // $Id: NormalDensityOperator.h 169 2005-01-28 14:17:28Z saulo $
 
 #pragma once
-#include "netoperator.h"
+#include "NetOperator.h"
 
 /**
  * Operator that represents the normal (Gaussian) density for the specified parameter.

@@ -1,7 +1,7 @@
 // $Id: WeightedLikeOperator.h 352 2005-03-11 17:08:23Z saulo $
 
 #pragma once
-#include "netoperator.h"
+#include "NetOperator.h"
 
 /**
  * Operator that implements weighted likelihood weighting on an operator.

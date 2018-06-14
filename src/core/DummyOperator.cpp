@@ -1,6 +1,6 @@
 // $Id: DummyOperator.cpp 169 2005-01-28 14:17:28Z saulo $
 
-#include "dummyoperator.h"
+#include "DummyOperator.h"
 
 #include <math.h>
 

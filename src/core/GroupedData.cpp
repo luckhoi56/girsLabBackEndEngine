@@ -1,6 +1,6 @@
 // $Id: GroupedData.cpp 352 2005-03-11 17:08:23Z saulo $
 
-#include "groupeddata.h"
+#include "GroupedData.h"
 
 /**
  * Constructor.

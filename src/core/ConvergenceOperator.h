@@ -1,5 +1,5 @@
 #pragma once
-#include "Weibullsampleset.h"
+#include "WeibullSampleSet.h"
 
 class ConvergenceOperator :
 	public SampleOperator

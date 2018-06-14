@@ -1,6 +1,6 @@
 // $Id: WeibullSampleSet.cpp 2184 2013-10-20 17:34:55Z Dongfeng Zhu $
 
-#include "weibullsampleset.h"
+#include "WeibullSampleSet.h"
 #include <algorithm>
 
 double QuantileOperator::MAX_FLOAT = 3e300;

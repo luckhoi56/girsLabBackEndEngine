@@ -1,6 +1,6 @@
 // $Id: ParamArray.cpp 2240 2014-02-23 02:14:31Z Dongfeng Zhu $
 
-#include "paramarray.h"
+#include "ParamArray.h"
 #include "NormalDensityOperator.h"
 #include "BRASSError.h"
 #include "SliceSamplerAids.h"

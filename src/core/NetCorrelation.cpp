@@ -1,4 +1,4 @@
-#include "netcorrelation.h"
+#include "NetCorrelation.h"
 
 NetCorrelation::NetCorrelation(void)
 {

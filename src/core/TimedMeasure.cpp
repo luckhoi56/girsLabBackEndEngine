@@ -1,6 +1,6 @@
 // $Id: TimedMeasure.cpp 169 2005-01-28 14:17:28Z saulo $
 
-#include "timedmeasure.h"
+#include "TimedMeasure.h"
 
 TimedMeasure::TimedMeasure(int rec_cnt, int measure)
 {

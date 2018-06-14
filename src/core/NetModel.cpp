@@ -1,6 +1,6 @@
 // $Id: NetModel.cpp 275 2005-03-01 03:53:40Z fgroen $
 
-#include "netmodel.h"
+#include "NetModel.h"
 
 NetModel::NetModel(void)
 {
@@ -31,7 +31,7 @@ IdentityModel::IdentityModel(const int index1, const int index2)
  */
 int IdentityModel::init(const int var_index)
 {
-	if (direction = DIR_UNDECIDED) {
+	if (direction == DIR_UNDECIDED) {
 
 		if (var_index == index_to) {
 			index_to = index_from;

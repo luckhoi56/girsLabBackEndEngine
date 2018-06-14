@@ -1,6 +1,6 @@
 // $Id: BRASSError.cpp 619 2005-05-24 19:08:43Z fgroen $
 
-#include "brasserror.h"
+#include "BRASSError.h"
 
 BRASSError::BRASSError(void)
 {

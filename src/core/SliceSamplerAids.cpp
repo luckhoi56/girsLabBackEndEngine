@@ -1,6 +1,6 @@
 // $Id:$ 
 
-#include "slicesampleraids.h"
+#include "SliceSamplerAids.h"
 
 #include <math.h>
 

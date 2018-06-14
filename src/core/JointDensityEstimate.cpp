@@ -1,6 +1,6 @@
 // $Id: JointDensityEstimate.cpp 352 2005-03-11 17:08:23Z saulo $
 
-#include "jointdensityestimate.h"
+#include "JointDensityEstimate.h"
 
 JointDensityEstimate::JointDensityEstimate(OperatorFunction * f1, 
 										   OperatorFunction * f2, 

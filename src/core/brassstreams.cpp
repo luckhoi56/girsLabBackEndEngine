@@ -1,6 +1,6 @@
 // $Id:$ 
 
-#include "brassstreams.h"
+#include "BRASSStreams.h"
 
 using namespace std;
 

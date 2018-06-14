@@ -1,5 +1,5 @@
 // $Id: QuickSorter.cpp 169 2005-01-28 14:17:28Z saulo $
-#include "quicksorter.h"
+#include "QuickSorter.h"
 
 #define M  7
 #define NSTACK  50

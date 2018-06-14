@@ -2,8 +2,8 @@
 
 #pragma once
 
-#include "paramarray.h"
-#include "deviategenerator.h"
+#include "ParamArray.h"
+#include "DeviateGenerator.h"
 #include <math.h>
 
 /**

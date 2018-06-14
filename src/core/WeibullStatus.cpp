@@ -1,6 +1,6 @@
 // $Id: Status.cpp 522 2005-05-11 18:02:47Z fgroen $
 
-#include "weibullstatus.h"
+#include "WeibullStatus.h"
 
 #include <string.h>
 

@@ -8,7 +8,7 @@
 #include <math.h>
 #include "DeviateGenerator.h"
 #include "QuickSorter.h"
-#include "brassstreams.h"
+#include "BRASSStreams.h"
 
 /**
  * Superclass for classes that operate on sample sets.

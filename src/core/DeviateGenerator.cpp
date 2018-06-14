@@ -1,6 +1,6 @@
 // $Id: DeviateGenerator.cpp 169 2005-01-28 14:17:28Z saulo $
 
-#include "deviategenerator.h"
+#include "DeviateGenerator.h"
 
 DeviateGenerator::DeviateGenerator(void)
 {

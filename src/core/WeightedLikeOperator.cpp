@@ -1,6 +1,6 @@
 // $Id: WeightedLikeOperator.cpp 275 2005-03-01 03:53:40Z fgroen $
 
-#include "weightedlikeoperator.h"
+#include "WeightedLikeOperator.h"
 
 /**
  * Creates a Weighted Likelihood operator.

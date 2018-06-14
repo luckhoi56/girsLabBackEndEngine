@@ -1,7 +1,7 @@
 // $Id: SliceSampler.cpp 2137 2013-08-01 03:33:59Z Dongfeng Zhu $
 
-#include "slicesampler.h"
-#include "slicesampleraids.h"
+#include "SliceSampler.h"
+#include "SliceSamplerAids.h"
 
 #include <math.h>
 

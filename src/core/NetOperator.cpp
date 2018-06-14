@@ -1,6 +1,6 @@
 // $Id: NetOperator.cpp 169 2005-01-28 14:17:28Z saulo $
 
-#include "netoperator.h"
+#include "NetOperator.h"
 
 /**
  * Global counter for assigning operator ID values.

@@ -1,6 +1,6 @@
 // $Id: TestConditions.cpp 169 2005-01-28 14:17:28Z saulo $
 
-#include "testconditions.h"
+#include "TestConditions.h"
 
 /**
  * Constructor.
