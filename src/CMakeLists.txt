@@ -1,16 +1,19 @@
 cmake_minimum_required(VERSION 3.8.0)
 
-project(BAYESIAN-ESTIMATION-ENGINE C CXX)
+project(BE C CXX)
 
 # Set version number
 set(MAJOR 1)
 set(MINOR 0)
 set(PATCH 0)
 
+# Options
+option(BE_BUILD_TEST "whether or not to build the tests" OFF)
+
 # Set the output paths
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${BEE_BINARY_DIR}/bin")
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${BEE_BINARY_DIR}/lib")
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${BEE_BINARY_DIR}/bin")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${BE_BINARY_DIR}/bin")
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${BE_BINARY_DIR}/lib")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${BE_BINARY_DIR}/bin")
 
 # Check C++11 support
 include(CheckCXXCompilerFlag)
@@ -35,6 +38,9 @@ add_subdirectory(ran)
 # add_subdirectory(redcas)
 # add_subdirectory(redcassrv)
 add_subdirectory(slatec)
-add_subdirectory(tests)
+if (BE_BUILD_TEST)
+    enable_testing()
+    add_subdirectory(tests)
+endif ()
 # add_subdirectory(testsuite)
 add_subdirectory(twostage)
