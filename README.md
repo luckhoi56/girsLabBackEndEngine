@@ -13,7 +13,7 @@ Welcome to the **computational engine** for Bayesian Estimation.
 
 ## Platforms ##
 
-HCLA has been tested on a variety of platforms:
+Bayesian Estimation has been tested on a variety of platforms:
 
   * Ubuntu 16
   * macOS 10.14
@@ -35,10 +35,10 @@ These are the base requirements to build and use Bayesian Estimation from a sour
 
 ### Cloning Instructions ###
 
-The HCLA project includes a number of dependencies as git submodules that need to be initialized and updated individually.
+The Bayesian Estimation project includes a number of dependencies as git submodules that need to be initialized and updated individually.
 In order to avoid this, the following command can be used:
 
-    git clone --recursive git@gitlab.girs-spc.seas.ucla.edu:jpl/hcl-engine.git
+    git clone --recursive git@gitlab.girs-spc.seas.ucla.edu:jpl/bayesian-estimation-engine.git
 
 ### Working on the Project ###
 
@@ -48,7 +48,7 @@ Before starting any work, __checkout__ to the `develop` branch by running:
     
 Create and/or assign an issue to yourself. Next, create a branch out of the `develop` branch from the issue in Gitlab.
 
-The HCLA project has the following submodules:
+The Bayesian Estimation project has the following submodules:
  * [catch](https://github.com/catchorg/Catch2)
 
 #### Pulling in Upstream Changes ####
@@ -88,7 +88,7 @@ For the Git documentation on working with submodules, please go [here](https://g
 
 ### Build Instructions using CMake ###
 
-HCLA comes with a CMake build script ([CMakeLists.txt](src/CMakeLists.txt)) that can be used on a wide range of platforms ("C" stands for cross-platform). If you don't have CMake installed already, you can download it for free from [here](http://www.cmake.org/).
+Bayesian Estimation comes with a CMake build script ([CMakeLists.txt](src/CMakeLists.txt)) that can be used on a wide range of platforms ("C" stands for cross-platform). If you don't have CMake installed already, you can download it for free from [here](http://www.cmake.org/).
 
 CMake works by generating native makefiles or build projects that can be used in the compiler environment of your choice.
 
@@ -104,7 +104,7 @@ CMake works by generating native makefiles or build projects that can be used in
 
 #### Standalone CMake Project ####
 
-When building HCLA as a standalone project, the typical workflow starts with:
+When building Bayesian Estimation as a standalone project, the typical workflow starts with:
 
     mkdir build       # Create a directory to hold the build output.
     cd build
@@ -112,7 +112,7 @@ When building HCLA as a standalone project, the typical workflow starts with:
 
 If you are on a \*nix system, you should now see a `Makefile` in the current directory. Continue with the following commands:
 
-    make              # Build HCL.
+    make              # Build Bayesian Estimation.
     ctest             # Run the tests.
 
 To generate a coverage report continue with:

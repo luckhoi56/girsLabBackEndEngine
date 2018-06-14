@@ -1,5 +1,3 @@
-// $Id:$ 
-
 #include "BRASSStreams.h"
 
 using namespace std;

@@ -14,7 +14,7 @@ RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositor
 # Install necessary dependencies
 RUN apk --no-cache add --virtual .build-deps g++ make cmake lcov
 
-# Build libraries and tests
+# Build libraries
 RUN mkdir -p build && cd build && cmake ../src && make -j
 
 # Stage deployer
@@ -24,7 +24,7 @@ FROM alpine:latest as deployer
 RUN mkdir -p /usr/app
 WORKDIR /usr/app
 
-# Copy hcl libraries
+# Copy bayesian-estimation libraries
 COPY --from=builder /usr/app/build/lib/*  /usr/local/lib/
 
 # Copy all the source code, but we need only the headers

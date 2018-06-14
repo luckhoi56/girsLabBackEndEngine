@@ -1,10 +1,8 @@
 set(CORE_SRC
         BRASSError.cpp
         BRASSError.h
-        BRASSStream.h
         BRASSStreams.cpp
         BRASSStreams.h
-        CMakeLists.txt
         ConvergenceOperator.cpp
         ConvergenceOperator.h
         DeviateGenerator.cpp
