@@ -4,7 +4,7 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+
 #include "AlgorithmTester.h"
 #include "Distribution.h"
 #include "SimpleHomogeneous.h"
