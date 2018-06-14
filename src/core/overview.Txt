@@ -1,0 +1,100 @@
+/**
+ * \mainpage BRASS Algorithm Core Overview
+ *
+ * <b>The information on this page may be incomplete and/or incorrect. See
+ * the documentation on the BRASSEngine class for usage information.</b>
+ *
+ * \section intro Introduction
+ * This set of classes constitutes the core of the BRASS algorithm. The algorithm
+ * consists of a slice sampler applied to a probablistic network representing 
+ * product nodes, in whihc the failure modes are quantified.
+ * 
+ * \section intent Design Intent
+ * The intent of the design is to make it possible to expand the structure of the
+ * model, as well as the set of likelihood and prior operators.
+ * 
+ * The choice of a slice sampler facilitates this, since it requires minimal tuning.
+ * For a reference, see Neal, 'Slice Sampling', Annals of Statistics, 2003.
+ *
+ * The design is flexible with respect to the number of product nodes, failure modes,
+ * priors, and likelihood models. 
+ *
+ * The priors and likelihood models are implemented as
+ * net operators, that operate on specific variables in the network. They are derived
+ * from a common superclass, which allows for encapsulation of the actual density 
+ * computations.
+ * 
+ * \section elements Core Elements
+ * The classes can be subdivided as follows:
+ *  
+ *
+ * \subsection engine BRASSEngine
+ * This class acts as the central access point for all functionality provided
+ * by the collective set of algorithms.
+ *
+ * \subsection slice SliceSampler
+ * This class implements the slice sampling procedure. It contains little or 
+ * no knowledge about the sampling problem.
+ *
+ * \subsection paramarray ParamArray
+ * This class forms an enhanced array representation of the parameter array. 
+ * It is used by the sampler during the sampling operation.
+ *
+ * \subsection sampleset SampleSet
+ * A container class for storage of generated samples. The class also provides 
+ * facilities to perform operations on the stored samples.
+ * 
+ * \subsection netoperators NetOperator (plus derived classes)
+ * Operators perform the actual computation of densities (likelihoods). The NetOperator
+ * class is subclassed whenever new likelihood functions are required. The design of 
+ * these classes allows ParamArray to compute likelihoods without knowing specifics of 
+ * the operators.
+ *
+ * \subsection opfunc SampleOperator and derived classes: 
+ * Utility classes for computing measures based on the sample set. The SampleSet class
+ * can call the opertor for each sample in the set.
+ * 
+ * \section usage Usage
+ * \subsection usagedescr Description
+ * To perform a sampling procedure, first a network needs to be defined. This is done
+ * by instantiating ParamArray and defining the necessary probabilistic dependencies by
+ * instantiating the proper NetOperators, and attaching them to the parameters in the 
+ * array.
+ *
+ * For instance, a network represents two Weibulls, in the form of two scale parameters
+ * and one shape parameters. One operator, which applies to all three parameters, represents
+ * the proportional hazard rate model applied to the two Weibulls. Another operator 
+ * is used to compute the test data likelihood function. It is tied to the shape and scale 
+ * parameters for the Weibull to which the product applies.
+ *
+ * Then, the slice sampler is repeatedly called to advance a step in the Markov Chain. 
+ * Whenever required, the sample is stored in the SampleSet instance. 
+ *
+ * When the sampling is complete, SampleOperators can be applied to perform such 
+ * operations as predicting reliability, etc.
+ *
+ * \subsection usageexample Example
+ * The following code snippet demonstrates the usage of the code.
+ * 
+ * \code
+ *	ParamArray arr;
+ *	SliceSampler slicer;
+ *	MeanSDevOperator statop(1);	// mean and sdev for parameter 1
+ *	SampleSet samples(4,200);	// sample set
+ *  
+ *	for (int i = 0 ; i < 1000 ; i++) slicer.advance(arr); // perform burn-in
+ *  
+ *	for (int i = 0 ; i < 50000 ; i++) // main sample loop
+ *	{
+ *		slicer.advance(arr);
+ *		if (i % 50 == 0) // skip samples to reduce auto-correlation
+ *		{
+ *			samples.fetch(arr); // store sample in set
+ *		}
+ *	}
+ *  
+ *	samples.execute(statop); // apply mean operator
+ * 	statop.getMean(); // retrieve mean
+ *	statop.getSDev(); // retrieve standard deviation
+ * \endcode
+ */
