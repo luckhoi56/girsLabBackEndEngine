@@ -11,8 +11,6 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include "SyncMutex.h"
-
 /**
  * Interface to DCDFLIB library of numerical routines.
  * The interface encapsulates the library in the form of a class
@@ -69,8 +67,7 @@ public:
 
 	virtual ~DCDFLIBInterface() {};
 private:
-	static SyncMutex mutex;
-
+	
 };
 
 #endif // !defined(AFX_DCDFLIBINTERFACE_H__2849D446_9B45_46CC_A8E2_9AFEEB262DB5__INCLUDED_)

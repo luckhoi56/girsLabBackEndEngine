@@ -8,14 +8,14 @@
 #include "cdflib.h"
 
 #include <math.h>
-#include "Error.h"
+// #include "Error.h"
 
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-SyncMutex DCDFLIBInterface::mutex("numerical.library.dcdflib");
+// SyncMutex DCDFLIBInterface::mutex("numerical.library.dcdflib");
 
 /**
  * Returns the gamma cdf. 
@@ -29,9 +29,9 @@ double DCDFLIBInterface::computeGammaCDF(double shape, double scale, double x)
 	int status;
 	double bound;
 
-	mutex.obtain();
+	// mutex.obtain();
 	cdfgam(&which,&p,&q,&x,&shape,&scale,&status,&bound);
-	mutex.release();
+	// mutex.release();
 
 	if (status != 0) return 0;
 	return p;
@@ -45,7 +45,7 @@ double DCDFLIBInterface::computeGammaCDF(double shape, double scale, double x)
 double DCDFLIBInterface::computeGammaPDF(double shape, double scale, double x)
 {
 	if (x == 0) return 0;
-	if (x < 0) throw INVALID_ARGUMENT;
+	// if (x < 0) throw INVALID_ARGUMENT;
 	return exp( shape * log(scale) - computeLnGamma(shape) + (shape - 1) * log(x) - (x * scale) );
 }
 
@@ -56,9 +56,9 @@ double DCDFLIBInterface::computeNormalCDF(double mean, double sd, double x)
 	double q;
 	int status;
 	double bound;
-	mutex.obtain();
+	// mutex.obtain();
 	cdfnor(&which,&p,&q,&x,&mean,&sd,&status,&bound);
-	mutex.release();
+	// mutex.release();
 	if (status != 0) return 0;
 	return p;
 }
@@ -71,9 +71,9 @@ double DCDFLIBInterface::computeBetaCDF(double alpha, double beta, double x)
 	double y = 1 - x;
 	int status;
 	double bound;
-	mutex.obtain();
+	// mutex.obtain();
 	cdfbet(&which,&p,&q,&x,&y,&alpha,&beta,&status,&bound);
-	mutex.release();
+	// mutex.release();
 	if (status != 0) return 0;
 	return p;
 }
@@ -81,7 +81,7 @@ double DCDFLIBInterface::computeBetaCDF(double alpha, double beta, double x)
 
 double DCDFLIBInterface::computeBetaPDF(double alpha, double beta, double x)
 {
-	if (x < 0.0|| x > 1.0) throw INVALID_ARGUMENT;
+	// if (x < 0.0|| x > 1.0) throw INVALID_ARGUMENT;
 
 	double lnbetafunc = computeLnBeta(alpha,beta);
 	double lnx = log(x);
@@ -102,9 +102,9 @@ double DCDFLIBInterface::computeNormalQuantile(double mean, double sd, double p)
 	int status;
 	double x;
 	double bound;
-	mutex.obtain();
+	// mutex.obtain();
 	cdfnor(&which,&p,&q,&x,&mean,&sd,&status,&bound);
-	mutex.release();
+	// mutex.release();
 	if (status != 0) return 0;
 	return x;
 }
@@ -116,9 +116,9 @@ double DCDFLIBInterface::computeGammaQuantile(double shape, double scale, double
 	int status;
 	double x;
 	double bound;
-	mutex.obtain();
+	// mutex.obtain();
 	cdfgam(&which,&p,&q,&x,&shape,&scale,&status,&bound);
-	mutex.release();
+	// mutex.release();
 	if (status != 0) return 0;
 	return x;
 }
@@ -131,9 +131,9 @@ double DCDFLIBInterface::computeBetaQuantile(double alpha, double beta, double p
 	double x;
 	double y;
 	double bound;
-	mutex.obtain();
+	// mutex.obtain();
 	cdfbet(&which,&p,&q,&x,&y,&alpha,&beta,&status,&bound);
-	mutex.release();
+	// mutex.release();
 	if (status != 0) return 0;
 	return x;
 }
@@ -141,18 +141,18 @@ double DCDFLIBInterface::computeBetaQuantile(double alpha, double beta, double p
 double DCDFLIBInterface::computeLnGamma(double x)
 {
 	double result = 0;
-	mutex.obtain();
+	// mutex.obtain();
 	result = gamln(&x);
-	mutex.release();
+	// mutex.release();
 	return result;
 }
 
 double DCDFLIBInterface::computeDiGamma(double x)
 {
 	double result = 0;
-	mutex.obtain();
+	// mutex.obtain();
 	result = psi(&x);
-	mutex.release();
+	// mutex.release();
 	return result;
 }
 
@@ -160,28 +160,28 @@ double DCDFLIBInterface::computeLnBeta(double a, double b)
 {
 	double result = 0;
 	double aplusb = a + b;
-	mutex.obtain();
+	// mutex.obtain();
 	result = gamln(&a) + gamln(&b) - gamln(&aplusb);
-	mutex.release();
+	// mutex.release();
 	return result;
 }
 
 double DCDFLIBInterface::computeLognormalPDF(double nu, double tau, double x)
 {
-	if (x <= 0) throw INVALID_ARGUMENT;
+	// if (x <= 0) throw INVALID_ARGUMENT;
 	double z = (log(x) - nu) / tau;
 	return exp((-z * z / 2) + log(0.3989422804 / (tau * x)));
 }
 
 double DCDFLIBInterface::computeLognormalCDF(double nu, double tau, double x)
 {
-	if (x <= 0) throw INVALID_ARGUMENT;
+	// if (x <= 0) throw INVALID_ARGUMENT;
 	return computeNormalCDF(nu, tau, log(x));
 }
 
 double DCDFLIBInterface::computeLognormalQuantile(double nu, double tau, double p)
 {
-	if (p < 0 || p >= 1) throw INVALID_ARGUMENT;
+	// if (p < 0 || p >= 1) throw INVALID_ARGUMENT;
 	if (p == 0) return 0;
 	return exp(computeNormalQuantile(nu, tau, p));
 }
@@ -209,9 +209,9 @@ double DCDFLIBInterface::computeLogLognormalPDF(double nu, double tau, double x)
 double DCDFLIBInterface::computeErf(double x)
 {
 	double result = 0;
-	mutex.obtain();
+	// mutex.obtain();
 	result = erf1(&x);
-	mutex.release();
+	// mutex.release();
 	return result;
 }
 
@@ -222,9 +222,9 @@ double DCDFLIBInterface::computeErfc(double x)
 {
 	double result = 0;
 	int ind = 0;
-	mutex.obtain();
+	// mutex.obtain();
 	result = erfc1(&ind,&x);
-	mutex.release();
+	// mutex.release();
 	return result;
 }
 
@@ -289,10 +289,10 @@ double DCDFLIBInterface::computeDeltaErf(double lo, double hi)
 		x_min = -lo;
 	}
 
-	mutex.obtain();
+	// mutex.obtain();
 	erfc_max = erfc1(&ind,&x_max);
 	erfc_min = erfc1(&ind,&x_min);
-	mutex.release();
+	// mutex.release();
 	double delta_erf = erfc_max - erfc_min;
 	return delta_erf;
 }
