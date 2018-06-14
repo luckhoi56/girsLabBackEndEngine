@@ -10,7 +10,7 @@
 #endif // _MSC_VER > 1000
 
 #include "TabularIntegrator.h"
-#include "Function.h"
+#include "../global/Function.h"
 
 class TabularBinomialSupport : public TabularIntegrator
 {

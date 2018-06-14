@@ -9,8 +9,8 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include "ParametricDistribution.h"
 #include "SimpleHomogeneous.h"
+#include "../parametric/ParametricDistribution.h"
 
 class UpdatedTabularDistribution : public ParametricDistribution
 {

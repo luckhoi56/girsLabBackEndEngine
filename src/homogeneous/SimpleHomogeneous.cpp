@@ -2,25 +2,24 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+
 #include "SimpleHomogeneous.h"
-#include "SampleSet.h"
-#include "GammaDistribution.h"
-#include "LogNormalDistribution.h"
-#include "NormalDistribution.h"
-#include "BetaDistribution.h"
-#include "MetropolisSampler.h"
-#include "MetropolisLNGenerator.h"
-#include "MetropolisTLNGenerator.h"
-#include "MetropolisNormalGenerator.h"
 #include "LogNormalBinomialDistribution.h"
 #include "LogNormalPoissonDistribution.h"
+#include "../global/SampleSet.h"
+#include "../parametric/GammaDistribution.h"
+#include "../parametric/LogNormalDistribution.h"
+#include "../parametric/NormalDistribution.h"
+#include "../parametric/BetaDistribution.h"
+#include "../global/MetropolisSampler.h"
+#include "../global/MetropolisLNGenerator.h"
+#include "../global/MetropolisTLNGenerator.h"
+#include "../global/MetropolisNormalGenerator.h"
+#include "../global/ZBrentRootFinder.h"
+#include "../global/VegasIntegrator.h"
+#include "../global/SimpsonIntegrator.h"
+#include "../global/Parameters.h"
 
-#include "ZBrentRootFinder.h"
-#include "VegasIntegrator.h"
-#include "SimpsonIntegrator.h"
-
-#include "Parameters.h"
 #include <math.h>
 #include <iostream>
 #include <fstream>
@@ -246,26 +245,30 @@ int SimpleHomogeneous::updateTabularBinomial(double * values, double * probs, in
 	// this function has been found to be OK (preliminary result)
 //	cout << "TB " << k << " " << N << " -> TABULAR" << endl;
 //	cout << BetaDistribution(k + 1,N - k + 1).getMean() << endl;
-	return constructTabular(values,probs,size,BetaDistribution(k + 1,N - k + 1),values0,probs0,size0);
+	BetaDistribution beta = BetaDistribution(k + 1,N - k + 1);
+	return constructTabular(values,probs,size,beta,values0,probs0,size0);
 }
 
 int SimpleHomogeneous::updateTabularPoisson(double * values, double * probs, int size, double k, double T, int n, double * values0, double * probs0, int size0)
 {
 //	cout << "TP " << k << " " << T << " -> TABULAR" << endl;
 //	cout << GammaDistribution(1 / T,k + 1).getMean() << endl;
-	return constructTabular(values,probs,size,GammaDistribution(1 / T,k + 1),values0,probs0,size0);
+	GammaDistribution gamma = GammaDistribution(1 / T,k + 1);
+	return constructTabular(values,probs,size,gamma,values0,probs0,size0);
 }
 
 int SimpleHomogeneous::updateTabularNormal(double * values, double * probs, int size, double mu, double sigma, int n, double * values0, double * probs0, int size0)
 {
 	//cout << "TB " << mu << " " << sigma << " -> TABULAR" << endl;
-	return constructTabular(values,probs,size,NormalDistribution(mu,sigma),values0,probs0,size0);
+	NormalDistribution normal = NormalDistribution(mu,sigma);
+	return constructTabular(values,probs,size,normal,values0,probs0,size0);
 }
 
 int SimpleHomogeneous::updateTabularLogNormal(double * values, double * probs, int size, double nu, double tau, int n, double * values0, double * probs0, int size0)
 {
 	//cout << "TB " << nu << " " << tau << " -> TABULAR" << endl;
-	return constructTabular(values,probs,size,LogNormalDistribution(nu,tau),values0,probs0,size0);
+	LogNormalDistribution logNormal = LogNormalDistribution(nu,tau);
+	return constructTabular(values,probs,size,logNormal,values0,probs0,size0);
 }
 /**
  * Sampling procedure used by LogNormal-Poisson and LogNormal-Binomial combinations.
@@ -368,8 +371,8 @@ void SimpleHomogeneous::testLogNormalBinomial()
 	bool readdata = false;
 	if (rsltfile.is_open()) readdata = true;
 
-	char buffer1[256];
-	char buffer2[256];
+	// char buffer1[256];
+	// char buffer2[256];
 	double x[21] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 	double px[21] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 	double y[21] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
@@ -403,10 +406,10 @@ void SimpleHomogeneous::testLogNormalBinomial()
 	cout.precision(3);
 	cout.setf(ios::scientific,ios::floatfield);
 
-    _strdate( buffer1 );
-	_strtime( buffer2 );
+    // _strdate( buffer1 );
+	// _strtime( buffer2 );
 
-	cout << "Test started on " << buffer1 << " at " << buffer2 << endl;
+	// cout << "Test started on " << buffer1 << " at " << buffer2 << endl;
 
 	for (int i = 0 ; i < cases ; i++) {
 
@@ -517,9 +520,9 @@ void SimpleHomogeneous::testLogNormalBinomial()
 	}
 
 	cout << "\\pagebreak\n\\section{Completion of the Test}" << endl;
-    _strdate( buffer1 );
-	_strtime( buffer2 );
-	cout << "Test completed on " << buffer1 << " at " << buffer2 << endl;
+    // _strdate( buffer1 );
+	// _strtime( buffer2 );
+	// cout << "Test completed on " << buffer1 << " at " << buffer2 << endl;
 
 	cout.unsetf(ios::scientific);
 	cout.unsetf(ios::floatfield);
@@ -541,8 +544,8 @@ void SimpleHomogeneous::testLogNormalPoisson()
 	if (rsltfile.is_open()) readdata = true;
 
 
-	char buffer1[256];
-	char buffer2[256];
+	// char buffer1[256];
+	// char buffer2[256];
 	double x[21] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 	double px[21] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 	double y[21] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
@@ -588,9 +591,9 @@ void SimpleHomogeneous::testLogNormalPoisson()
 	cout << "\\end{tabular}" << endl;
 	cout << "\\end{center}" << endl;
 
-    _strdate( buffer1 );
-	_strtime( buffer2 );
-	cout << "Test started on " << buffer1 << " at " << buffer2 << endl;
+    // _strdate( buffer1 );
+	// _strtime( buffer2 );
+	// cout << "Test started on " << buffer1 << " at " << buffer2 << endl;
 
 	for (int i = 0 ; i < cases ; i++) {
 
@@ -703,9 +706,9 @@ void SimpleHomogeneous::testLogNormalPoisson()
 	}
 
 	cout << "\\pagebreak\n\\section{Completion of the Test}" << endl;
-    _strdate( buffer1 );
-	_strtime( buffer2 );
-	cout << "Test completed on " << buffer1 << " at " << buffer2 << endl;
+    // _strdate( buffer1 );
+	// _strtime( buffer2 );
+	// cout << "Test completed on " << buffer1 << " at " << buffer2 << endl;
 
 	cout.unsetf(ios::scientific);
 	cout.unsetf(ios::floatfield);

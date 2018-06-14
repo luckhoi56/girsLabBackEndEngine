@@ -9,8 +9,8 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include "ParametricDistribution.h"
 #include "TabularPoissonSupport.h"
+#include "../parametric/ParametricDistribution.h"
 
 class UniformPoissonDistribution : public ParametricDistribution   
 {

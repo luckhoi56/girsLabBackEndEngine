@@ -12,14 +12,13 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
-#include "TabularLogNormalPoissonIntegrator.h"
-#include <math.h>
 
-#include "Function.h"
-#include "SimpsonIntegrator.h"
+#include "TabularLogNormalPoissonIntegrator.h"
+#include "../global/Function.h"
+#include "../global/SimpsonIntegrator.h"
 
 #include <iostream>
+#include <math.h>
 
 class TabLNPFunction : public Function
 {

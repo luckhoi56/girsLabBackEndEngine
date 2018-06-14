@@ -10,7 +10,7 @@
 #endif // _MSC_VER > 1000
 
 #include "TabularBinomialSupport.h"
-#include "ParametricDistribution.h"
+#include "../parametric/ParametricDistribution.h"
 
 class UniformBinomialDistribution  : public ParametricDistribution  
 {

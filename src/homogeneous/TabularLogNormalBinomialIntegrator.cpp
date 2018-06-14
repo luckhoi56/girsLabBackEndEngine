@@ -13,12 +13,12 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
-#include "TabularLogNormalBinomialIntegrator.h"
-#include "Function.h"
-#include <math.h>
-#include "SimpsonIntegrator.h"
 
+#include "TabularLogNormalBinomialIntegrator.h"
+#include "../global/Function.h"
+#include "../global/SimpsonIntegrator.h"
+
+#include <math.h>
 #include <iostream>
 
 /**

@@ -2,17 +2,17 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+
 #include "SimpleUEUpdater.h"
-#include "GammaDistribution.h"
 #include "LogNormalPoissonDistribution.h"
 #include "LogNormalBinomialDistribution.h"
 #include "UpdatedTabularDistribution.h"
 #include "TabularPoissonDistribution.h"
 #include "TabularBinomialDistribution.h"
-#include "BetaDistribution.h"
-#include <math.h>
+#include "../parametric/BetaDistribution.h"
+#include "../parametric/GammaDistribution.h"
 
+#include <math.h>
 #include <iostream>
 
 using namespace std;

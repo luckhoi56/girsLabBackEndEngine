@@ -2,11 +2,12 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+
 #include "TabularPoissonSupport.h"
-#include "DCDFLIBInterface.h"
-#include "SLATECInterface.h"
-#include "GammaDistribution.h"
+#include "../dcdf/DCDFLIBInterface.h"
+#include "../slatec/SLATECInterface.h"
+#include "../parametric/GammaDistribution.h"
+
 #include <math.h>
 
 //////////////////////////////////////////////////////////////////////

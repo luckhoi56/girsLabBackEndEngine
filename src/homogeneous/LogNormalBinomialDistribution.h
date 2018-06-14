@@ -9,10 +9,10 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include "ParametricDistribution.h"
 #include "SimpleHomogeneous.h"
-#include "BetaDistribution.h"
-#include "LogNormalDistribution.h"
+#include "../parametric/ParametricDistribution.h"
+#include "../parametric/BetaDistribution.h"
+#include "../parametric/LogNormalDistribution.h"
 
 class LogNormalBinomialDistribution : public ParametricDistribution  
 {

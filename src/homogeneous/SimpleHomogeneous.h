@@ -9,10 +9,10 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include "Function.h"
-#include "ParametricDistribution.h"
-#include "Parameters.h"
-#include "MetropolisGenerator.h"
+#include "../global/Function.h"
+#include "../parametric/ParametricDistribution.h"
+#include "../global/Parameters.h"
+#include "../global/MetropolisGenerator.h"
 
 class SimpleHomogeneous  
 {

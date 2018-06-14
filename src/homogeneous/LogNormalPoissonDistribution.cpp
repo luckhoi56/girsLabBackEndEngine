@@ -2,15 +2,13 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+
 #include "LogNormalPoissonDistribution.h"
-#include "SimpsonIntegrator.h"
-
-#include "GammaDistribution.h"
-#include "LogNormalDistribution.h"
-#include "Parameters.h"
-
-#include "RANLIBInterface.h"
+#include "../global/SimpsonIntegrator.h"
+#include "../parametric/GammaDistribution.h"
+#include "../parametric/LogNormalDistribution.h"
+#include "../global/Parameters.h"
+#include "../ran/RANLIBInterface.h"
 
 #include <iostream>
 #include <math.h>

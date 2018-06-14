@@ -5,8 +5,8 @@
 #if !defined(AFX_LOGNORMALPOISSONDISTRIBUTION_H__1927951E_8818_4088_972D_135152A9E138__INCLUDED_)
 #define AFX_LOGNORMALPOISSONDISTRIBUTION_H__1927951E_8818_4088_972D_135152A9E138__INCLUDED_
 
-#include "ParametricDistribution.h"
 #include "SimpleHomogeneous.h"
+#include "../parametric/ParametricDistribution.h"
 
 #if _MSC_VER > 1000
 #pragma once

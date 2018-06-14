@@ -2,18 +2,19 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+
 #include "TabularDistribution.h"
-#include "DCDFLIBInterface.h"
 #include "TabularBinomialSupport.h"
 #include "TabularPoissonSupport.h"
 #include "TabularLogNormalIntegrator.h"
 #include "TabularLogNormalBinomialIntegrator.h"
 #include "TabularLogNormalPoissonIntegrator.h"
 #include "TabularNormalIntegrator.h"
-#include "LogNormalDistribution.h"
-#include "BetaDistribution.h"
-#include "NormalDistribution.h"
+#include "../parametric/LogNormalDistribution.h"
+#include "../parametric/BetaDistribution.h"
+#include "../parametric/NormalDistribution.h"
+#include "../dcdf/DCDFLIBInterface.h"
+
 #include <math.h>
 #include <iostream>
 //////////////////////////////////////////////////////////////////////
@@ -586,22 +587,26 @@ TabularBinomialSupport2::~TabularBinomialSupport2() {
 
 double TabularBinomialSupport2::getMean(double lox,double hix) const
 {
-	return getMeanS(TabularBinomialSupport(k,n,m,lox,hix,lnc));
+	TabularBinomialSupport tbs = TabularBinomialSupport(k,n,m,lox,hix,lnc);
+	return getMeanS(tbs);
 }
 
 double TabularBinomialSupport2::getVariance(double lox,double hix) const
 {
-	return getVarianceS(TabularBinomialSupport(k,n,m,lox,hix,lnc));
+	TabularBinomialSupport tbs = TabularBinomialSupport(k,n,m,lox,hix,lnc);
+	return getVarianceS(tbs);
 }
 
 double TabularBinomialSupport2::getCDF(double lox,double hix,double locdf, double hicdf ,double x, double i0hi) const
 {
-	return getCDFS(TabularBinomialSupport(k,n,m,lox,hix,lnc),lox,hix,locdf,hicdf,x,i0hi);
+	TabularBinomialSupport tbs = TabularBinomialSupport(k,n,m,lox,hix,lnc);
+	return getCDFS(tbs,lox,hix,locdf,hicdf,x,i0hi);
 }
 
 double TabularBinomialSupport2::getQuantile(double lox ,double hix, double locdf, double hicdf,double z, double i0hi) const
 {
-	return getQuantileS(TabularBinomialSupport(k,n,m,lox,hix,lnc),lox,hix,locdf,hicdf,z,i0hi);
+	TabularBinomialSupport tbs = TabularBinomialSupport(k,n,m,lox,hix,lnc);
+	return getQuantileS(tbs,lox,hix,locdf,hicdf,z,i0hi);
 }
 
 /*
@@ -644,26 +649,30 @@ TabularPoissonSupport2::~TabularPoissonSupport2() {
 double TabularPoissonSupport2::getMean(double lox,double hix) const
 {
 //	if (lox == hix) return lox;
-	return getMeanS(TabularPoissonSupport(k,t,m,lox,hix,gammaln));
+	TabularPoissonSupport tps = TabularPoissonSupport(k,t,m,lox,hix,gammaln);
+	return getMeanS(tps);
 }
 
 double TabularPoissonSupport2::getVariance(double lox,double hix) const 
 {
 //	if (lox == hix) return 0;
-	return getVarianceS(TabularPoissonSupport(k,t,m,lox,hix,gammaln));
+	TabularPoissonSupport tps = TabularPoissonSupport(k,t,m,lox,hix,gammaln);
+	return getVarianceS(tps);
 }
 
 double TabularPoissonSupport2::getCDF(double lox,double hix,double locdf, double hicdf ,double x, double i0hi) const 
 {
 //	if (lox == hix || locdf == hicdf) return hicdf;
 	if (locdf == hicdf) return hicdf;
-	return getCDFS(TabularPoissonSupport(k,t,m,lox,hix,gammaln),lox,hix,locdf,hicdf,x,i0hi);
+	TabularPoissonSupport tps = TabularPoissonSupport(k,t,m,lox,hix,gammaln);
+	return getCDFS(tps,lox,hix,locdf,hicdf,x,i0hi);
 }
 
 double TabularPoissonSupport2::getQuantile(double lox ,double hix, double locdf, double hicdf,double z, double i0hi) const
 {
 //	if (lox == hix || locdf == hicdf) return lox;
-	return getQuantileS(TabularPoissonSupport(k,t,m,lox,hix,gammaln),lox,hix,locdf,hicdf,z,i0hi);
+	TabularPoissonSupport tps = TabularPoissonSupport(k,t,m,lox,hix,gammaln);
+	return getQuantileS(tps,lox,hix,locdf,hicdf,z,i0hi);
 }
 
 /*
@@ -702,22 +711,26 @@ TabularLogNormalSupport2::~TabularLogNormalSupport2() {
 
 double TabularLogNormalSupport2::getMean(double lox,double hix) const
 {
-	return getMeanS(TabularLogNormalIntegrator(nu,tau,m,lox,hix));
+	TabularLogNormalIntegrator tlni = TabularLogNormalIntegrator(nu,tau,m,lox,hix);
+	return getMeanS(tlni);
 }
 
 double TabularLogNormalSupport2::getVariance(double lox,double hix) const
 {
-	return getVarianceS(TabularLogNormalIntegrator(nu,tau,m,lox,hix));
+	TabularLogNormalIntegrator tlni = TabularLogNormalIntegrator(nu,tau,m,lox,hix);
+	return getVarianceS(tlni);
 }
 
 double TabularLogNormalSupport2::getCDF(double lox,double hix,double locdf, double hicdf ,double x, double i0hi) const
 {
-	return getCDFS(TabularLogNormalIntegrator(nu,tau,m,lox,hix),lox,hix,locdf,hicdf,x,i0hi);
+	TabularLogNormalIntegrator tlni = TabularLogNormalIntegrator(nu,tau,m,lox,hix);
+	return getCDFS(tlni,lox,hix,locdf,hicdf,x,i0hi);
 }
 
 double TabularLogNormalSupport2::getQuantile(double lox ,double hix, double locdf, double hicdf,double z, double i0hi) const
 {
-	return getQuantileS(TabularLogNormalIntegrator(nu,tau,m,lox,hix),lox,hix,locdf,hicdf,z,i0hi);
+	TabularLogNormalIntegrator tlni = TabularLogNormalIntegrator(nu,tau,m,lox,hix);
+	return getQuantileS(tlni,lox,hix,locdf,hicdf,z,i0hi);
 }
 
 /*
@@ -757,22 +770,26 @@ TabularNormalSupport2::~TabularNormalSupport2() {
 
 double TabularNormalSupport2::getMean(double lox,double hix) const
 {
-	return getMeanS(TabularNormalIntegrator(nu,tau,m,lox,hix));
+	TabularNormalIntegrator tni = TabularNormalIntegrator(nu,tau,m,lox,hix);
+	return getMeanS(tni);
 }
 
 double TabularNormalSupport2::getVariance(double lox,double hix) const
 {
-	return getVarianceS(TabularNormalIntegrator(nu,tau,m,lox,hix));
+	TabularNormalIntegrator tni = TabularNormalIntegrator(nu,tau,m,lox,hix);
+	return getVarianceS(tni);
 }
 
 double TabularNormalSupport2::getCDF(double lox,double hix,double locdf, double hicdf ,double x, double i0hi) const
 {
-	return getCDFS(TabularNormalIntegrator(nu,tau,m,lox,hix),lox,hix,locdf,hicdf,x,i0hi);
+	TabularNormalIntegrator tni = TabularNormalIntegrator(nu,tau,m,lox,hix);
+	return getCDFS(tni,lox,hix,locdf,hicdf,x,i0hi);
 }
 
 double TabularNormalSupport2::getQuantile(double lox ,double hix, double locdf, double hicdf,double z, double i0hi) const
 {
-	return getQuantileS(TabularNormalIntegrator(nu,tau,m,lox,hix),lox,hix,locdf,hicdf,z,i0hi);
+	TabularNormalIntegrator tni = TabularNormalIntegrator(nu,tau,m,lox,hix);
+	return getQuantileS(tni,lox,hix,locdf,hicdf,z,i0hi);
 }
 
 /*
@@ -819,23 +836,27 @@ TabularLogNormalBinomialSupport2::~TabularLogNormalBinomialSupport2() {
 
 double TabularLogNormalBinomialSupport2::getMean(double lox,double hix) const
 {
-	return getMeanS(TabularLogNormalBinomialIntegrator(lox,hix,nu,tau,k,n,m,lnnorm));
+	TabularLogNormalBinomialIntegrator tlnbi = TabularLogNormalBinomialIntegrator(lox,hix,nu,tau,k,n,m,lnnorm);
+	return getMeanS(tlnbi);
 }
 
 double TabularLogNormalBinomialSupport2::getVariance(double lox,double hix) const
 {
-	return getVarianceS(TabularLogNormalBinomialIntegrator(lox,hix,nu,tau,k,n,m,lnnorm));
+	TabularLogNormalBinomialIntegrator tlnbi = TabularLogNormalBinomialIntegrator(lox,hix,nu,tau,k,n,m,lnnorm);
+	return getVarianceS(tlnbi);
 }
 
 
 double TabularLogNormalBinomialSupport2::getCDF(double lox,double hix,double locdf, double hicdf ,double x, double i0hi) const
 {
-	return getCDFS(TabularLogNormalBinomialIntegrator(lox,hix,nu,tau,k,n,m,lnnorm),lox,hix,locdf,hicdf,x,i0hi);
+	TabularLogNormalBinomialIntegrator tlnbi = TabularLogNormalBinomialIntegrator(lox,hix,nu,tau,k,n,m,lnnorm);
+	return getCDFS(tlnbi,lox,hix,locdf,hicdf,x,i0hi);
 }
 
 double TabularLogNormalBinomialSupport2::getQuantile(double lox ,double hix, double locdf, double hicdf,double z, double i0hi) const
 {
-	return getQuantileS(TabularLogNormalBinomialIntegrator(lox,hix,nu,tau,k,n,m,lnnorm),lox,hix,locdf,hicdf,z,i0hi);
+	TabularLogNormalBinomialIntegrator tlnbi = TabularLogNormalBinomialIntegrator(lox,hix,nu,tau,k,n,m,lnnorm);
+	return getQuantileS(tlnbi,lox,hix,locdf,hicdf,z,i0hi);
 }
 
 /*
@@ -895,7 +916,8 @@ TabularLogNormalPoissonSupport2::~TabularLogNormalPoissonSupport2() {
  */
 double TabularLogNormalPoissonSupport2::getMean(double lox,double hix) const
 {
-	return getMeanS(TabularLogNormalPoissonIntegrator(lox,hix,nu,tau,k,t,m,lnnorm));
+	TabularLogNormalPoissonIntegrator tlnpi = TabularLogNormalPoissonIntegrator(lox,hix,nu,tau,k,t,m,lnnorm);
+	return getMeanS(tlnpi);
 }
 
 /**
@@ -903,22 +925,23 @@ double TabularLogNormalPoissonSupport2::getMean(double lox,double hix) const
  */
 double TabularLogNormalPoissonSupport2::getVariance(double lox,double hix) const
 {
-	return getVarianceS(TabularLogNormalPoissonIntegrator(lox,hix,nu,tau,k,t,m,lnnorm));
+	TabularLogNormalPoissonIntegrator tlnpi = TabularLogNormalPoissonIntegrator(lox,hix,nu,tau,k,t,m,lnnorm);
+	return getVarianceS(tlnpi);
 }
 
 double TabularLogNormalPoissonSupport2::getCDF(double lox,double hix,double locdf, double hicdf ,double x, double i0hi) const
 {
-	return getCDFS(TabularLogNormalPoissonIntegrator(lox,hix,nu,tau,k,t,m,lnnorm),lox,hix,locdf,hicdf,x,i0hi);
+	TabularLogNormalPoissonIntegrator tlnpi = TabularLogNormalPoissonIntegrator(lox,hix,nu,tau,k,t,m,lnnorm);
+	return getCDFS(tlnpi,lox,hix,locdf,hicdf,x,i0hi);
 }
 
 double TabularLogNormalPoissonSupport2::getQuantile(double lox ,double hix, double locdf, double hicdf,double z, double i0hi) const
 {
-	return getQuantileS(TabularLogNormalPoissonIntegrator(lox,hix,nu,tau,k,t,m,lnnorm),lox,hix,locdf,hicdf,z,i0hi);
+	TabularLogNormalPoissonIntegrator tlnpi = TabularLogNormalPoissonIntegrator(lox,hix,nu,tau,k,t,m,lnnorm);
+	return getQuantileS(tlnpi,lox,hix,locdf,hicdf,z,i0hi);
 }
 
 /*
-
-/**
  * Returns the pdf at the specified location. This can be called for a specific interval in
  * the distribution.
  * @param lox lower bound of interval
@@ -927,7 +950,9 @@ double TabularLogNormalPoissonSupport2::getQuantile(double lox ,double hix, doub
  * @param hicdf CDF at higher bound
  * @param x location for which to compute PDF
  * @param i0hi integral over given interval
- * /
+ */
+
+/*
 double TabularLogNormalPoissonSupport2::getLogPDF(double lox,double hix, double locdf, double hicdf ,double x, double i0hi) const
 {
 	TabularLogNormalPoissonIntegrator sup(lox,hix,nu,tau,k,t,m,lnnorm);

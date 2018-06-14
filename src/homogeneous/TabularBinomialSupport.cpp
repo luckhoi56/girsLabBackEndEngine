@@ -2,15 +2,15 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+
 #include "TabularBinomialSupport.h"
-#include "DCDFLIBInterface.h"
-#include "BetaDistribution.h"
-#include "SimpsonIntegrator.h"
+#include "../parametric/BetaDistribution.h"
+#include "../global/SimpsonIntegrator.h"
+#include "../global/Function.h"
+#include "../dcdf/DCDFLIBInterface.h"
+
 #include <math.h>
 #include <iostream>
-
-#include "Function.h"
 
 class KIsZeroFunction : public Function
 {

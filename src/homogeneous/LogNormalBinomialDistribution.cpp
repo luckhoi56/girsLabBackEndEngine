@@ -2,19 +2,17 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
-#include "LogNormalBinomialDistribution.h"
-#include "SimpsonIntegrator.h"
 
-#include "BetaDistribution.h"
-#include "LogNormalDistribution.h"
-#include "Parameters.h"
+#include "LogNormalBinomialDistribution.h"
+#include "../global/SimpsonIntegrator.h"
+#include "../parametric/BetaDistribution.h"
+#include "../parametric/LogNormalDistribution.h"
+#include "../global/Parameters.h"
+#include "../ran/RANLIBInterface.h"
 
 #include <iostream>
-
 #include <math.h>
 
-#include "RANLIBInterface.h"
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

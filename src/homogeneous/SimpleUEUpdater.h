@@ -10,7 +10,7 @@
 #endif // _MSC_VER > 1000
 
 #include "SimpleHomogeneous.h"
-#include "ParametricDistribution.h"
+#include "../parametric/ParametricDistribution.h"
 
 enum UEPair {UE_GAMMA_POISSON,UE_BETA_BINOMIAL,UE_LOGNORMAL_POISSON,
    UE_LOGNORMAL_BINOMIAL,UE_TABULAR_BINOMIAL,UE_TABULAR_POISSON};

@@ -2,11 +2,12 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+
 #include "TabularNormalIntegrator.h"
+#include "../dcdf/DCDFLIBInterface.h"
+#include "../parametric/NormalDistribution.h"
+
 #include <math.h>
-#include "DCDFLIBInterface.h"
-#include "NormalDistribution.h"
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

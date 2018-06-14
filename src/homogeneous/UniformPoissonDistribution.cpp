@@ -2,12 +2,12 @@
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
-#include "UniformPoissonDistribution.h"
-#include "TabularPoissonSupport.h"
-#include "RANLIBInterface.h"
-#include <math.h>
 
+#include "TabularPoissonSupport.h"
+#include "UniformPoissonDistribution.h"
+#include "../ran/RANLIBInterface.h"
+
+#include <math.h>
 #include <iostream>
 
 //////////////////////////////////////////////////////////////////////

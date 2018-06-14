@@ -9,9 +9,9 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include "ParametricDistribution.h"
-#include "GammaDistribution.h"
 #include "TabularIntegrator.h"
+#include "../parametric/ParametricDistribution.h"
+#include "../parametric/GammaDistribution.h"
 
 #define TABULAR_LIN				1
 #define TABULAR_LOG				2
